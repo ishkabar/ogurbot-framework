@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>latestmajor</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	    <PackageId>OgurBot.Core</PackageId>
+	    <Version>0.1.0-alpha</Version>
+	    <Authors>Dominik Karczewski</Authors>
+	    <Company>OgurBot</Company>
+	    <Description>Core for OgurBot: events, status enums, scheduler.</Description>
+	    <PackageTags>metin2;bot;framework;core</PackageTags>
+	    <RepositoryUrl>https://github.com/twoje-konto/ogurbot-framework</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	    </PropertyGroup>
+
+</Project>
