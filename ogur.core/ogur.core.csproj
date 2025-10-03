@@ -1,5 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<!-- File: ogur.core/ogur.core/ogur.core.csproj -->
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latestmajor</LangVersion>
@@ -12,13 +12,13 @@
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <PackageId>OgurBot.Core</PackageId>
+    <PackageId>ogur.Core</PackageId>
     <Version>0.1.0-alpha</Version>
     <Authors>Dominik Karczewski</Authors>
-    <Company>OgurBot</Company>
-    <Description>Core for Ogur: scheduler and helpers (contracts live in ogur.Abstractions).</Description>
+    <Company>ogur</Company>
+    <Description>Core for ogur: scheduler and helpers (contracts live in ogur.Abstractions).</Description>
     <PackageTags>metin2;bot;framework;core</PackageTags>
-    <RepositoryUrl>https://github.com/twoje-konto/ogurbot-framework</RepositoryUrl>
+    <RepositoryUrl>https://github.com/ishkabar/ogur.core</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
@@ -32,5 +32,4 @@
   <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
-
 </Project>
