@@ -1,24 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\ogur.abstractions\ogur.abstractions\ogur.abstractions.csproj" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latestmajor</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <LangVersion>latestmajor</LangVersion>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+    <RootNamespace>ogur.core</RootNamespace>
+    <AssemblyName>ogur.core</AssemblyName>
 
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	    <PackageId>OgurBot.Core</PackageId>
-	    <Version>0.1.0-alpha</Version>
-	    <Authors>Dominik Karczewski</Authors>
-	    <Company>OgurBot</Company>
-	    <Description>Core for OgurBot: events, status enums, scheduler.</Description>
-	    <PackageTags>metin2;bot;framework;core</PackageTags>
-	    <RepositoryUrl>https://github.com/twoje-konto/ogurbot-framework</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-	    </PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PackageId>OgurBot.Core</PackageId>
+    <Version>0.1.0-alpha</Version>
+    <Authors>Dominik Karczewski</Authors>
+    <Company>OgurBot</Company>
+    <Description>Core for Ogur: scheduler and helpers (contracts live in ogur.Abstractions).</Description>
+    <PackageTags>metin2;bot;framework;core</PackageTags>
+    <RepositoryUrl>https://github.com/twoje-konto/ogurbot-framework</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ogur.Abstractions" Version="0.1.0-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
 </Project>
