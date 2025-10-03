@@ -6,17 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <RootNamespace>ogur.core</RootNamespace>
-    <AssemblyName>ogur.core</AssemblyName>
+    <RootNamespace>Ogur.core</RootNamespace>
+    <AssemblyName>Ogur.core</AssemblyName>
 
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <PackageId>ogur.Core</PackageId>
+    <PackageId>Ogur.Core</PackageId>
     <Version>0.1.0-alpha</Version>
     <Authors>Dominik Karczewski</Authors>
     <Company>ogur</Company>
-    <Description>Core for ogur: scheduler and helpers (contracts live in ogur.Abstractions).</Description>
+    <Description>Core for ogur: scheduler and helpers (contracts live in Ogur.Abstractions).</Description>
     <PackageTags>metin2;bot;framework;core</PackageTags>
     <RepositoryUrl>https://github.com/ishkabar/ogur.core</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
