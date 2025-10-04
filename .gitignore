@@ -1,9 +1,25 @@
+# Build artifacts
 bin/
 obj/
+artifacts/
+
+# Rider/VS
 .vs/
 .idea/
-*.user
 *.suo
-*.cache
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet
 *.nupkg
-artifacts/
+*.snupkg
+.packages/
+
+# Temp collected sources
+CollectedCs/
+*.zip
+*.rar
+
+# Logs
+*.log
