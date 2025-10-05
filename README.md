@@ -1,36 +1,29 @@
-# ogurbot-framework (Core)
+# Ogur.Core
 
-Core library for **Ogur** bot framework (Metin2).  
-Namespace: `ogur.core`. Targets **.NET 8**.
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
 
-## What’s inside
-- **Scheduler abstraction**
-  - `IScheduler` – async delay abstraction
-  - `DefaultScheduler` – implementation based on `Task.Delay`
-- **Dependency on Abstractions** (`ogur.abstractions`)
-  - Uses contracts like `IBotCapability`, `CapabilityStatus`, `BotEvent`
+## Overview
+**Ogur.Core** provides the shared runtime infrastructure for all Ogur bot capabilities.  
+It includes the internal scheduler, state machine (FSM), and event pipeline supporting concurrent capability execution.
 
-## Design
-- **Clean layering**
-  - Abstractions (`ogur.abstractions`) → Core (`ogur.core`) → Capabilities (e.g. Fishing) → Hosts (CLI/WPF)
-- **Extensible**: Capabilities and hosts consume this Core via NuGet or project reference.
-- **Testable**: logic separated from UI (WPF), async/await friendly, scheduler injectable.
+## Architecture
+- `Scheduler` — background task orchestration using `BackgroundService`.
+- `CapabilityStartContext` — provides DI-based runtime context for each capability.
+- `BotEvent` and `CapabilityStatus` — define unified event models and lifecycle tracking.
 
-## Quick start
-Reference the package/project in your capability:
+## Usage
+Ogur.Core is automatically referenced by capability projects like `Ogur.Capabilities.Fishing`.
 
 ```csharp
-using ogur.core;
-using ogur.abstractions;
+await scheduler.ScheduleAsync(fishingCapability, token);
+```
 
-public sealed class MyBot
-{
-    private readonly IScheduler _scheduler = new DefaultScheduler();
+## Development
+- **Language:** C# 12  
+- **Target Framework:** .NET 8  
+- **Dependencies:** Ogur.Abstractions
 
-    public async Task Run(CancellationToken ct)
-    {
-        Console.WriteLine("Starting bot...");
-        await _scheduler.Delay(TimeSpan.FromSeconds(1), ct);
-        Console.WriteLine("Done.");
-    }
-}
+## License
+MIT License © Ogur Project
