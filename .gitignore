@@ -18,6 +18,7 @@ artifacts/
 
 # Temp collected sources
 CollectedCs/
+*collected*/
 *.zip
 *.rar
 
