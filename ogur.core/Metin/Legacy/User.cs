@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ogur.Core.Legacy.HACK;
+namespace Ogur.Core.Metin.Legacy;
 
 public class User
 {

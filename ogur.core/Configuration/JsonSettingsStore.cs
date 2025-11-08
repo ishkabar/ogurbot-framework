@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿// File: Ogur.Core/Configuration/JsonSettingsStore.cs
+// Project: Ogur.Core
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Ogur.Abstractions.Configuration;
 
 namespace Ogur.Core.Configuration;
 
 /// <summary>
-/// File-based JSON settings store located under %AppData%/Ogur/Fishing/config.user.json.
+/// File-based JSON settings store with configurable application path.
 /// </summary>
 public sealed class JsonSettingsStore : ISettingsStore
 {
@@ -20,14 +18,17 @@ public sealed class JsonSettingsStore : ISettingsStore
     /// <summary>
     /// Initializes a new instance of the <see cref="JsonSettingsStore"/> class.
     /// </summary>
+    /// <param name="options">Settings store options.</param>
     /// <param name="logger">Logger instance.</param>
-    public JsonSettingsStore(ILogger<JsonSettingsStore> logger)
+    public JsonSettingsStore(IOptions<JsonSettingsStoreOptions> options, ILogger<JsonSettingsStore> logger)
     {
         _logger = logger;
+        var opts = options.Value;
         var root = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        var dir = Path.Combine(root, "Ogur", "Fishing");
+        var dir = Path.Combine(root, "Ogur", opts.ApplicationName);
         Directory.CreateDirectory(dir);
-        _filePath = Path.Combine(dir, "config.user.json");
+        _filePath = Path.Combine(dir, opts.FileName);
+        _logger.LogDebug("Settings store initialized at {Path}", _filePath);
     }
 
     /// <inheritdoc />
@@ -67,6 +68,22 @@ public sealed class JsonSettingsStore : ISettingsStore
         root[sectionName] = settings;
         var output = JsonSerializer.Serialize(root, new JsonSerializerOptions { WriteIndented = true });
         await File.WriteAllTextAsync(_filePath, output, ct);
-        _logger.LogInformation("User settings saved to {Path}.", _filePath);
+        _logger.LogInformation("User settings saved to {Path}", _filePath);
     }
+}
+
+/// <summary>
+/// Options for JSON settings store configuration.
+/// </summary>
+public sealed class JsonSettingsStoreOptions
+{
+    /// <summary>
+    /// Gets or sets the application name for settings folder.
+    /// </summary>
+    public string ApplicationName { get; set; } = "Default";
+
+    /// <summary>
+    /// Gets or sets the settings file name.
+    /// </summary>
+    public string FileName { get; set; } = "config.user.json";
 }

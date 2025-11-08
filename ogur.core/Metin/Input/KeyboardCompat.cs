@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Ogur.Abstractions.Input;
 
-namespace Ogur.Core.Input;
+namespace Ogur.Core.Metin.Input;
 
 /// <summary>
 /// Compatibility facade exposing PressKey and PressKey2 methods in the requested form.

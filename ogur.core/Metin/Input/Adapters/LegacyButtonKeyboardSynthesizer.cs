@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Ogur.Abstractions.Input;
-using Ogur.Core.Legacy.HACK;
+using Ogur.Core.Metin.Legacy;
 
-namespace Ogur.Core.Input.Adapters;
+namespace Ogur.Core.Metin.Input.Adapters;
 
 /// <summary>
 /// Bridges the legacy <c>HACK.Button</c> static API to the clean <see cref="IKeyboardSynthesizer"/> contract.

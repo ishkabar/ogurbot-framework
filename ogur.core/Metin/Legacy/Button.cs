@@ -5,7 +5,7 @@ using System.Windows;
 using System.Drawing;
 using System.Threading;
 
-namespace Ogur.Core.Legacy.HACK;
+namespace Ogur.Core.Metin.Legacy;
 
 public class Button
     {
