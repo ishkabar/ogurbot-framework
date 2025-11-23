@@ -22,6 +22,6 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo [SUCCESS] Package generated!
-dir "C:\Users\Dominik\source\artifacts\nuget\Ogur.Core.0.2.0-*"
+dir "C:\Users\Dominik\source\artifacts\nuget\Ogur.Core.0.2.1-*"
 echo.
 pause

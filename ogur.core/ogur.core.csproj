@@ -12,7 +12,7 @@
         <IsPackable>true</IsPackable>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageId>Ogur.Core</PackageId>
-        <Version>0.2.0-alpha</Version>
+        <Version>0.2.63-alpha</Version>
         <Authors>Dominik Karczewski</Authors>
         <Company>Ogur</Company>
         <Description>Core library for Ogur applications: scheduler, encryption, configuration, hub integration with license validation and telemetry.</Description>
@@ -33,7 +33,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Ogur.Abstractions" Version="0.2.0-alpha" />
+        <PackageReference Include="Ogur.Abstractions" Version="0.2.20-alpha" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />

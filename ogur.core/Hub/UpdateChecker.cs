@@ -1,6 +1,11 @@
 ﻿// File: Ogur.Core/Hub/UpdateChecker.cs
 // Project: Ogur.Core
+
+using System;
+using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Ogur.Abstractions.Hub;
@@ -37,7 +42,8 @@ public sealed class UpdateChecker : IUpdateChecker
     {
         try
         {
-            var url = $"{_options.HubUrl}/api/updates/check?application={Uri.EscapeDataString(_options.ApplicationName)}&version={Uri.EscapeDataString(currentVersion)}";
+            var url = $"{_options.HubUrl}/api/updates/check?currentVersion={Uri.EscapeDataString(currentVersion)}";
+
             var response = await _httpClient.GetAsync(url, ct);
 
             if (!response.IsSuccessStatusCode)
@@ -46,8 +52,11 @@ public sealed class UpdateChecker : IUpdateChecker
                 return UpdateCheckResult.NotAvailable(currentVersion);
             }
 
-            var updateInfo = await response.Content.ReadFromJsonAsync<UpdateCheckResponse>(cancellationToken: ct);
-            if (updateInfo is null || !updateInfo.IsUpdateAvailable)
+            var apiResponse = await response.Content.ReadFromJsonAsync<ApiResponse<UpdateCheckResponse>>(ct);
+            
+            var updateInfo = apiResponse?.Data;
+
+            if (updateInfo is null || !updateInfo.UpdateAvailable)
             {
                 _logger.LogInformation("No updates available for version {Version}", currentVersion);
                 return UpdateCheckResult.NotAvailable(currentVersion);
@@ -58,8 +67,8 @@ public sealed class UpdateChecker : IUpdateChecker
 
             return UpdateCheckResult.Available(
                 currentVersion,
-                updateInfo.LatestVersion,
-                updateInfo.DownloadUrl,
+                updateInfo.LatestVersion ?? currentVersion,
+                updateInfo.DownloadUrl ?? string.Empty,
                 updateInfo.ReleaseNotes,
                 updateInfo.IsRequired);
         }
@@ -70,10 +79,21 @@ public sealed class UpdateChecker : IUpdateChecker
         }
     }
 
-    private sealed record UpdateCheckResponse(
-        bool IsUpdateAvailable,
-        string LatestVersion,
-        string DownloadUrl,
-        string? ReleaseNotes,
-        bool IsRequired);
+    private sealed record ApiResponse<T>
+    {
+        public bool Success { get; init; }
+        public T? Data { get; init; }
+        public string? Error { get; init; }
+    }
+
+    private sealed record UpdateCheckResponse
+    {
+        public bool UpdateAvailable { get; init; }
+        public string CurrentVersion { get; init; } = string.Empty;
+        public string? LatestVersion { get; init; }
+        public string? ReleaseNotes { get; init; }
+        public string? DownloadUrl { get; init; }
+        public bool IsRequired { get; init; }
+        public DateTime? ReleasedAt { get; init; }
+    }
 }
